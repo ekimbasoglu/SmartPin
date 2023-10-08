@@ -15,6 +15,7 @@ import {
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
+  openProperty: any = null; // To keep track of the currently open property
   properties = mapMock;
   constructor(public mapService: MapService) {}
   selectProperty(property: any) {
@@ -35,5 +36,10 @@ export class ListComponent {
     map!.panTo(markerCoordinates, {
       duration: 1000, // Optional animation duration in milliseconds
     });
+
+    // Accordion logic
+    this.openProperty === property
+      ? (this.openProperty = null)
+      : (this.openProperty = property);
   }
 }

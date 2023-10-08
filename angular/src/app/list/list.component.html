@@ -8,7 +8,8 @@
     </p>
   </div>
   <ul class="flex flex-col w-full">
-    <li (click)="selectProperty(property)" *ngFor="let property of properties" class="flex flex-row mb-2 border-gray-400">
+    <div *ngFor="let property of properties" >
+    <li (click)="selectProperty(property)" class="flex flex-row mb-2 border-gray-400">
       <div class="transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4">
         <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
           <a href="#" class="relative block">
@@ -34,5 +35,24 @@
         </button>
       </div>
     </li>
+    <!-- Accordion Section -->
+    <div class="w-full" *ngIf="openProperty === property">
+      <div class="px-4 py-2 mt-2 bg-gray-100 dark:bg-gray-900 rounded-md">
+        <!-- Content for Accordion -->
+        <p class="text-sm text-gray-600 dark:text-gray-200">
+          <b>State: </b> {{ property.city + ' ' + property.state }}
+        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-200">
+          <b>Amenities: </b> {{ property.highValueAmenities }}
+        </p>
+        <br><b>Starting price: </b>
+        <p class="text-sm text-gray-600 dark:text-gray-200"
+        *ngFor="let floorplan of property.floorplans; let last = last" >
+        {{ floorplan.bedrooms }} Bedroom: ${{ floorplan.price }}
+        </p>
+      </div>
+    </div>
+    <!-- End Accordion Section -->
+  </div>
   </ul>
 </div>

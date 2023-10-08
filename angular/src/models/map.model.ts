@@ -6,6 +6,7 @@ export interface IMap {
   propertyID: number;
   name: string;
   streetAddress: string;
+  isAccordionOpen: boolean;
   city: string;
   price: number;
   state: string;

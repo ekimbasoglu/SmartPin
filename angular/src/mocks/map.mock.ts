@@ -3,6 +3,7 @@ import { IMap } from '../models/map.model';
 export const mapMock: IMap[] = [
   {
     listID: 7892483,
+    isAccordionOpen: false,
     order: 0,
     propertyID: 811492,
     name: 'Landmark at Crowley',
@@ -42,6 +43,7 @@ export const mapMock: IMap[] = [
     listID: 7892483,
     order: 0,
     propertyID: 809587,
+    isAccordionOpen: false,
     name: 'East Quarter Residences',
     streetAddress: '315 S Cesar Chavez Blvd',
     city: 'Dallas',
@@ -80,6 +82,7 @@ export const mapMock: IMap[] = [
     order: 0,
     propertyID: 809571,
     name: 'Avilla Grove',
+    isAccordionOpen: false,
     streetAddress: '360 West Frontier Pkwy',
     city: 'Prosper',
     state: 'TX',
@@ -124,6 +127,7 @@ export const mapMock: IMap[] = [
     state: 'TX',
     pets: true,
     washerDry: 'FULLSIZE_FURNISHED',
+    isAccordionOpen: false,
     photo: 'https://d3d5tet3r0xd5y.cloudfront.net/photos/290133/micros/NTC.jpg',
     favorite: false,
     highestSentCommissions: 150,
