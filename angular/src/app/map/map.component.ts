@@ -36,8 +36,6 @@ import mapboxgl from 'mapbox-gl';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  map: any;
-
   constructor(private mapService: MapService, private el: ElementRef) {}
   ngOnInit(): void {
     mapboxgl.accessToken = environment.mapbox.accessToken;

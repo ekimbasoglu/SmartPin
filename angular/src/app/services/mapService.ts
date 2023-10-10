@@ -14,20 +14,20 @@ export class MapService {
   initMap(el: any): void {
     const initialState = { lng: -97.393521, lat: 32.567122, zoom: 8.5 };
     this.map = new mapboxgl.Map({
-      container: el.nativeElement, // this or either el.nativeElement
+      container: el.nativeElement,
       style: `https://api.maptiler.com/maps/basic/style.json?key=${environment.mapTilerKey}`, // MapTiler style URL
-      center: [initialState.lng, initialState.lat], // starting position [lng, lat]
-      zoom: 10.83, // starting zoom
+      // style: 'mapbox://styles/mapbox/streets-v12', // default maxbox style URL
+      center: [initialState.lng, initialState.lat],
+      zoom: 10.83,
     });
     this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-    // generate a for function that gets all the properties and returns their geolocation
     for (let i = 0; i < mapMock.length; i++) {
-      // convert the string data to number
-      const long = Number(mapMock[i].geocode.Longitude);
-      const lat = Number(mapMock[i].geocode.Latitude);
       new mapboxgl.Marker({ color: '#FF0000' })
-        .setLngLat([long, lat])
+        .setLngLat([
+          Number(mapMock[i].geocode.Longitude),
+          Number(mapMock[i].geocode.Latitude),
+        ])
         .addTo(this.map);
     }
   }
