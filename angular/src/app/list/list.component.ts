@@ -8,7 +8,6 @@ import {
   LngLat,
   LngLatBounds,
 } from 'maplibre-gl';
-import { MapComponent } from '../map/map.component';
 
 @Component({
   selector: 'app-list',
@@ -22,7 +21,6 @@ export class ListComponent {
   selectProperty(property: any) {
     // Get the map from the map service
     const map = this.mapService.getMap();
-    console.log(map);
     const markerLongitude = Number(property?.geocode.Longitude);
     const markerLatitude = Number(property?.geocode.Latitude);
 

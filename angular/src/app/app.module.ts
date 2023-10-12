@@ -19,6 +19,7 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { AddmarkerModalComponent } from './addmarker-modal/addmarker-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {
     LogoutComponent,
     MapComponent,
     ListComponent,
+    AddmarkerModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ import {
     BrowserAnimationsModule,
     NoopAnimationsModule,
   ],
-  providers: [MapComponent],
+  providers: [MapComponent, AddmarkerModalComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

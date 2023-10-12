@@ -16,7 +16,7 @@ import {
   LngLatBounds,
 } from 'maplibre-gl';
 import { MapService } from '../services/mapService';
-import mapboxgl from 'mapbox-gl';
+import * as mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-map',
@@ -35,11 +35,8 @@ import mapboxgl from 'mapbox-gl';
   `,
   styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements AfterViewInit {
   constructor(private mapService: MapService, private el: ElementRef) {}
-  ngOnInit(): void {
-    mapboxgl.accessToken = environment.mapbox.accessToken;
-  }
   ngAfterViewInit(): void {
     this.mapService.initMap(this.el);
   }
