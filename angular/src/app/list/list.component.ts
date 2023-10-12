@@ -15,26 +15,23 @@ import {
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
-  openProperty: any = null; // To keep track of the currently open property
+  openProperty: any = null;
   properties = mapMock;
-  constructor(public mapService: MapService) {}
+
+  constructor(private mapService: MapService) {}
+
   selectProperty(property: any) {
     // Get the map from the map service
-    const map = this.mapService.getMap();
-    const markerLongitude = Number(property?.geocode.Longitude);
-    const markerLatitude = Number(property?.geocode.Latitude);
-
-    const markerCoordinates = new LngLat(markerLongitude, markerLatitude);
-
-    // Define the maximum allowable zoom level
-    const maxZoom = 10;
-
-    // Use setZoom to set the zoom level to the maximum allowable zoom
-    map!.setZoom(maxZoom);
-
-    // Use panTo to center the map on the marker coordinates
-    map!.panTo(markerCoordinates, {
-      duration: 1000, // Optional animation duration in milliseconds
+    this.mapService.map$.subscribe((map) => {
+      if (map) {
+        const markerLongitude = Number(property?.geocode.Longitude);
+        const markerLatitude = Number(property?.geocode.Latitude);
+        // Zoom
+        map.setZoom(10);
+        map.panTo(new LngLat(markerLongitude, markerLatitude), {
+          duration: 1000,
+        });
+      }
     });
 
     // Accordion logic
