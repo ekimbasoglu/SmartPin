@@ -20,6 +20,7 @@ import {
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { AddmarkerModalComponent } from './addmarker-modal/addmarker-modal.component';
+import { ConnectionlostComponent } from './connectionlost/connectionlost.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AddmarkerModalComponent } from './addmarker-modal/addmarker-modal.compo
     MapComponent,
     ListComponent,
     AddmarkerModalComponent,
+    ConnectionlostComponent,
   ],
   imports: [
     BrowserModule,
