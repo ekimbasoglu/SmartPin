@@ -1,7 +1,11 @@
 <!-- <div class="relative w-full h-[calc(100vh-77px)] overflow-hidden container">
 </div> -->
 <!-- section to divide -->
-<section class="flex flex-col relative shrink-0 box-border mt-5 h-full">
+<!-- Connection lost-->
+<div *ngIf="connectionLost" class="flex items-center justify-center">
+  <app-connectionlost></app-connectionlost>
+</div>
+<section [ngClass]="connectionLost ? 'opacity-40' : ''" class="flex flex-col relative shrink-0 box-border mt-5 h-full">
   <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
     <div class="flex flex-col items-stretch leading-[normal] w-2/3 max-md:w-full">
       <form class="flex flex-col relative shrink-0 box-border min-h-[600px] p-5">
@@ -15,9 +19,9 @@
       </form>
     </div>
   </div>
-  
+
   <main id="show-projects-button-holder">
-    <button mat-raised-button id="show-projects-button" (click)="openModal()">Show Projects</button>
+    <button mat-raised-button id="show-projects-button" (click)="openModal()">Add Place</button>
   </main>
 
 </section>
