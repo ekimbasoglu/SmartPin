@@ -3,3 +3,6 @@
 @import "tailwindcss/utilities";
 @import "~maplibre-gl/dist/maplibre-gl.css";
 @import "~mapbox-gl/dist/mapbox-gl.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

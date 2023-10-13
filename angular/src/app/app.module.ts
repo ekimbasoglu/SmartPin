@@ -21,6 +21,7 @@ import {
 } from '@angular/platform-browser/animations';
 import { AddmarkerModalComponent } from './addmarker-modal/addmarker-modal.component';
 import { ConnectionlostComponent } from './connectionlost/connectionlost.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ConnectionlostComponent } from './connectionlost/connectionlost.compone
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
+    MatDialogModule,
   ],
   providers: [MapComponent, AddmarkerModalComponent],
   bootstrap: [AppComponent],
