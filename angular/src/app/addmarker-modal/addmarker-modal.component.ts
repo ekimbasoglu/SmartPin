@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { MapDataService } from '../services/map-data.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { MapService } from '../services/mapService';
 
 @Component({
   selector: 'app-addmarker-modal',
@@ -18,7 +22,29 @@ export class AddmarkerModalComponent {
     photo: '',
     state: '',
   };
-  getModal() {
-    throw new Error('Method not implemented.');
+  constructor(
+    private mapDataService: MapDataService,
+    private http: HttpClient,
+    private router: Router,
+    private mapService: MapService
+  ) {}
+
+  addLocation(formObj: any) {
+    console.log(formObj);
+    this.mapDataService.addMapData(formObj).subscribe(
+      (response) => {
+        this.mapService.addMarker(formObj.lng, formObj.lat);
+
+        console.log(response);
+        response !== null
+          ? alert('Add marker success!')
+          : alert('Add marker failed!');
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Register failed', error);
+        alert('Register failed!');
+      }
+    );
   }
 }
