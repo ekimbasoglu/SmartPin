@@ -14,8 +14,13 @@ exports.getMaps = async (req, res) => {
     }
 };
 exports.getMap = async (req, res) => {
+    const propertyId = req.params.propertyId;
+    if (!propertyId) {
+        return res.status(400).json({ 'error': 'Missing fields' });
+    }
+
     try {
-        const mapData = await Map.findById(req.params.id);
+        const mapData = await Map.find({ propertyId: propertyId });
         return res.status(200).json(mapData);
     } catch (err) {
         return res.status(500).json({ error: err.message });

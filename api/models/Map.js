@@ -35,6 +35,9 @@ const Map = new mongoose.Schema({
     startingPrice: {
         type: String,
     },
+    photo: {
+        type: String
+    }
 });
 
 module.exports = mongoose.model('Map', Map);
