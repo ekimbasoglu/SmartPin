@@ -17,11 +17,11 @@
         <!-- list goes into here -->
         <app-list></app-list>
       </form>
+      <div (click)="openModal()" class="w-full px-4 py-5 mb-2 bg-white border rounded-md shadow sm:px-6 dark:bg-gray-800 text-lg font-medium leading-6 text-gray-900 dark:text-white" id="show-projects-button-holder">
+        <button mat-raised-button id="show-projects-button">Add Property</button>
+      </div>
     </div>
   </div>
 
-  <main id="show-projects-button-holder">
-    <button mat-raised-button id="show-projects-button" (click)="openModal()">Add Place</button>
-  </main>
 
 </section>
