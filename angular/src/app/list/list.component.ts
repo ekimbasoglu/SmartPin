@@ -17,12 +17,20 @@ import { MapDataService } from '../services/map-data.service';
 })
 export class ListComponent implements OnInit {
   openProperty: any = null;
-  properties = mapMock;
+  properties: any = [];
 
   constructor(
     private mapService: MapService,
     private mapDataService: MapDataService
-  ) {}
+  ) {
+    this.mapDataService.getMapData().subscribe((data) => {
+      if (data) {
+        this.properties = data;
+      } else {
+        this.mapDataService.updateConnectionStatus(true);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.mapDataService.getMapData().subscribe((data) => {
@@ -36,13 +44,12 @@ export class ListComponent implements OnInit {
 
   selectProperty(property: any) {
     // Get the map from the map service
+    console.log(property);
     this.mapService.map$.subscribe((map) => {
       if (map) {
-        const markerLongitude = Number(property?.geocode.Longitude);
-        const markerLatitude = Number(property?.geocode.Latitude);
         // Zoom
         map.setZoom(10);
-        map.panTo(new LngLat(markerLongitude, markerLatitude), {
+        map.panTo(new LngLat(property.lng, property.lat), {
           duration: 1000,
         });
       }
