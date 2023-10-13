@@ -15,7 +15,7 @@ import { MapDataService } from '../services/map-data.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
   openProperty: any = null;
   properties: any = [];
 
@@ -32,18 +32,7 @@ export class ListComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.mapDataService.getMapData().subscribe((data) => {
-      if (data) {
-        console.log(data);
-      } else {
-        this.mapDataService.updateConnectionStatus(true);
-      }
-    });
-  }
-
   selectProperty(property: any) {
-    // Get the map from the map service
     console.log(property);
     this.mapService.map$.subscribe((map) => {
       if (map) {
