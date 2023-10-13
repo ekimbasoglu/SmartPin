@@ -54,3 +54,17 @@ exports.addMap = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+exports.deleteMap = async (req, res) => {
+    const propertyId = req.params.propertyId;
+
+    if (!propertyId) {
+        return res.status(400).json({ 'error': 'Missing fields' });
+    }
+    try {
+        const mapData = await Map.findOneAndDelete({ propertyId: propertyId });
+        return res.status(200).json(mapData);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+};
