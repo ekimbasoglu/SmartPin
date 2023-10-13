@@ -23,10 +23,10 @@ export class DashboardComponent {
       this.connectionLost = status;
     });
   }
-  openModal() {
-    this.dialogService.openDialog();
+  addPropertyDialog() {
+    this.dialogService.addPropertyDialog();
   }
-  addMarker() {
-    this.mapService.addMarker(-96.9289, 32.6194);
+  deletePropertyDialog() {
+    this.dialogService.deletePropertyDialog();
   }
 }

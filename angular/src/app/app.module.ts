@@ -22,6 +22,7 @@ import {
 import { AddmarkerModalComponent } from './addmarker-modal/addmarker-modal.component';
 import { ConnectionlostComponent } from './connectionlost/connectionlost.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteMarkerModalComponent } from './delete-marker-modal/delete-marker-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ListComponent,
     AddmarkerModalComponent,
     ConnectionlostComponent,
+    DeleteMarkerModalComponent,
   ],
   imports: [
     BrowserModule,
