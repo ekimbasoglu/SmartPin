@@ -38,11 +38,11 @@ app.get('/', (req, res) => {
 
 // Imports 
 const users = require('./routes/User');
-// const products = require('./routes/Product');
+const maps = require('./routes/Map');
 
 //Routers
 app.use('/user', users);
-// app.use('/product', products);
+app.use('/map', maps);
 // app.use('/cart', cart);
 
 

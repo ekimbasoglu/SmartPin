@@ -16,6 +16,7 @@ import {
   LngLatBounds,
 } from 'maplibre-gl';
 import { MapService } from '../services/mapService';
+import * as mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-map',
@@ -36,33 +37,7 @@ import { MapService } from '../services/mapService';
 })
 export class MapComponent implements AfterViewInit {
   constructor(private mapService: MapService, private el: ElementRef) {}
-
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.mapService.initMap(this.el);
   }
 }
-
-// function loadPins(map: any, property?: any) {
-//   // generate a for function that gets all the properties and returns their geolocation
-//   for (let i = 0; i < mapMock.length; i++) {
-//     // convert the string data to number
-//     const long = Number(mapMock[i].geocode.Longitude);
-//     const lat = Number(mapMock[i].geocode.Latitude);
-//     new Marker({ color: '#FF0000' }).setLngLat([long, lat]).addTo(map);
-//   }
-//   // check if the property is not undefined
-//   if (property !== undefined) {
-//     alert('it works');
-//     // get the coordinates of the property
-//     const markerLongitude = Number(property?.geocode.Longitude);
-//     const markerLatitude = Number(property?.geocode.Latitude);
-
-//     const markerCoordinates = new LngLat(markerLongitude, markerLatitude);
-//     const bounds = new LngLatBounds().extend(markerCoordinates); // Adjust the padding value as needed to control the zoom level
-
-//     map.fitBounds(bounds, {
-//       padding: 20, // Optional padding around the bounding box
-//       duration: 1000, // Optional animation duration in milliseconds
-//     });
-//   }
-// }

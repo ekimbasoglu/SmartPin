@@ -40,15 +40,13 @@
       <div class="px-4 py-2 mt-2 bg-gray-100 dark:bg-gray-900 rounded-md">
         <!-- Content for Accordion -->
         <p class="text-sm text-gray-600 dark:text-gray-200">
-          <b>State: </b> {{ property.city + ' ' + property.state }}
+          <b>State: </b> {{ property.state }}
         </p>
         <p class="text-sm text-gray-600 dark:text-gray-200">
-          <b>Amenities: </b> {{ property.highValueAmenities }}
+          <b>Amenities: </b> {{ property.amenities }}
         </p>
         <br><b>Starting price: </b>
-        <p class="text-sm text-gray-600 dark:text-gray-200"
-        *ngFor="let floorplan of property.floorplans; let last = last" >
-        {{ floorplan.bedrooms }} Bedroom: ${{ floorplan.price }}
+        <p class="text-sm font-extralight">{{ property.startingPrice }}
         </p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { mapMock } from 'src/mocks/map.mock';
 import { MapService } from '../services/mapService';
 import {
@@ -8,6 +8,7 @@ import {
   LngLat,
   LngLatBounds,
 } from 'maplibre-gl';
+import { MapDataService } from '../services/map-data.service';
 
 @Component({
   selector: 'app-list',
@@ -15,26 +16,32 @@ import {
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
-  openProperty: any = null; // To keep track of the currently open property
-  properties = mapMock;
-  constructor(public mapService: MapService) {}
+  openProperty: any = null;
+  properties: any = [];
+
+  constructor(
+    private mapService: MapService,
+    private mapDataService: MapDataService
+  ) {
+    this.mapDataService.getMapData().subscribe((data) => {
+      if (data) {
+        this.properties = data;
+      } else {
+        this.mapDataService.updateConnectionStatus(true);
+      }
+    });
+  }
+
   selectProperty(property: any) {
-    // Get the map from the map service
-    const map = this.mapService.getMapInstance();
-    const markerLongitude = Number(property?.geocode.Longitude);
-    const markerLatitude = Number(property?.geocode.Latitude);
-
-    const markerCoordinates = new LngLat(markerLongitude, markerLatitude);
-
-    // Define the maximum allowable zoom level
-    const maxZoom = 10;
-
-    // Use setZoom to set the zoom level to the maximum allowable zoom
-    map!.setZoom(maxZoom);
-
-    // Use panTo to center the map on the marker coordinates
-    map!.panTo(markerCoordinates, {
-      duration: 1000, // Optional animation duration in milliseconds
+    console.log(property);
+    this.mapService.map$.subscribe((map) => {
+      if (map) {
+        // Zoom
+        map.setZoom(10);
+        map.panTo(new LngLat(property.lng, property.lat), {
+          duration: 1000,
+        });
+      }
     });
 
     // Accordion logic
