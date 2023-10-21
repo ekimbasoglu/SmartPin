@@ -15,7 +15,6 @@ export class DeleteMarkerModalComponent {
   deleteLocation(formObj: any) {
     this.mapDataService.deleteMapData(formObj).subscribe(
       (response) => {
-        console.log(response);
         response !== null
           ? alert('Property and marker deleted successfully!')
           : alert('Delete marker failed!');

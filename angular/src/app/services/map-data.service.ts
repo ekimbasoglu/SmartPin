@@ -40,7 +40,6 @@ export class MapDataService {
   }
 
   deleteMapData(formObj: any): Observable<any> {
-    console.log('asd ', formObj.propertyId);
     return this.http
       .delete(`http://localhost:3000/map/delete/${formObj.propertyId}`)
       .pipe(

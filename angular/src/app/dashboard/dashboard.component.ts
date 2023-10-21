@@ -14,8 +14,6 @@ export class DashboardComponent {
   connectionLost = false;
 
   constructor(
-    private mapService: MapService,
-    private addmarkerModalComponent: AddmarkerModalComponent,
     private mapDataService: MapDataService,
     private dialogService: DialogService
   ) {

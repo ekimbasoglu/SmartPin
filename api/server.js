@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const redis = require('redis');
-const { createConnection } = require('typeorm');
 require('dotenv').config();
 
 
@@ -43,8 +42,6 @@ const maps = require('./routes/Map');
 //Routers
 app.use('/user', users);
 app.use('/map', maps);
-// app.use('/cart', cart);
-
 
 // Start the server
 app.listen(port, () => {

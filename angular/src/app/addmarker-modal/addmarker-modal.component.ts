@@ -33,7 +33,6 @@ export class AddmarkerModalComponent {
     this.mapService.addMarker(formObj.lng, formObj.lat);
     this.mapDataService.addMapData(formObj).subscribe(
       (response) => {
-        console.log(response);
         response !== null
           ? alert('Add marker success!')
           : alert('Add marker failed!');
