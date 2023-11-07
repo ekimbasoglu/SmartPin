@@ -20,7 +20,7 @@ export class MapService {
     const initialState = { lng: -97.393521, lat: 32.567122, zoom: 8.5 };
     this.map = new Map({
       container: el.nativeElement,
-      style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${environment.mapTilerKey}`,
+      style: `https://api.maptiler.com/maps/eef16200-c4cc-4285-9370-c71ca24bb42d/style.json?key=${environment.mapTilerKey}`, // MapTiler style URL
       center: [initialState.lng, initialState.lat],
       zoom: initialState.zoom,
     });
