@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  mapTilerKey: '2b2f0X2RouZs0yPEi3XT',
+  mapTilerKey: 'SoL71Zyf7SmLrVYWC7fQ',
   mapbox: {
     accessToken:
       'pk.eyJ1IjoiZWtpbWJhc29nbHUiLCJhIjoiY2xuaWloZnZxMWp1NTJxdzV1dGpxMXYycyJ9.dzIDRwHJRNBWYW046NfTVQ',
