@@ -1,40 +1,47 @@
 import { ElementRef, Injectable, OnInit } from '@angular/core';
-import {
-  Map,
-  NavigationControl,
-  Marker,
-  LngLat,
-  LngLatBounds,
-} from 'maplibre-gl';
-import { mapMock } from 'src/mocks/map.mock';
-import { environment } from 'src/environments/environment';
 
+import * as mapboxgl from 'mapbox-gl';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { mapMock } from 'src/mocks/map.mock';
+import { environment } from '../../../src/environments/environment';
+import { MapDataService } from './map-data.service';
 @Injectable({
   providedIn: 'root',
 })
 export class MapService {
-  public map: Map | undefined;
+  private mapSubject = new BehaviorSubject<mapboxgl.Map | null>(null);
 
-  // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   initMap(el: any): void {
     const initialState = { lng: -97.393521, lat: 32.567122, zoom: 8.5 };
-    this.map = new Map({
+    const map = new mapboxgl.Map({
       container: el.nativeElement,
       style: `https://api.maptiler.com/maps/eef16200-c4cc-4285-9370-c71ca24bb42d/style.json?key=${environment.mapTilerKey}`, // MapTiler style URL
       center: [initialState.lng, initialState.lat],
-      zoom: initialState.zoom,
+      zoom: 10.83,
     });
-    this.map.addControl(new NavigationControl(), 'top-right');
-    // generate a for function that gets all the properties and returns their geolocation
-    for (let i = 0; i < mapMock.length; i++) {
-      // convert the string data to number
-      const long = Number(mapMock[i].geocode.Longitude);
-      const lat = Number(mapMock[i].geocode.Latitude);
-      new Marker({ color: '#FF0000' }).setLngLat([long, lat]).addTo(this.map);
-    }
+    this.initMapFeatures(map);
+    this.mapSubject.next(map);
+  }
+  // Navigation Control Initialization
+  initMapFeatures(map: mapboxgl.Map) {
+    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   }
 
-  getMapInstance(): Map | undefined {
-    return this.map;
+  get map$(): Observable<mapboxgl.Map | null> {
+    return this.mapSubject.asObservable();
+  }
+
+  addMarker(lng: number, lat: number): any {
+    this.map$.subscribe((map) => {
+      if (map) {
+        // Setting the Marker
+        new mapboxgl.Marker({ color: '#FA8128' })
+          .setLngLat([lng, lat])
+          .addTo(map);
+        // Zoom
+        map.setZoom(10);
+        map.panTo(new mapboxgl.LngLat(lng, lat), { duration: 1000 });
+      }
+    });
   }
 }

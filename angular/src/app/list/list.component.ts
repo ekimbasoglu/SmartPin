@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { mapMock } from 'src/mocks/map.mock';
 import { MapService } from '../services/mapService';
 import {
@@ -34,7 +34,6 @@ export class ListComponent implements OnInit {
         // set the pins/markers on the map
         this.mapService.map$.subscribe((map) => {
           if (map) {
-            console.log(this.properties);
             for (let i = 0; i < this.properties.length; i++) {
               new mapboxgl.Marker({ color: '#FF0000' })
                 .setLngLat([

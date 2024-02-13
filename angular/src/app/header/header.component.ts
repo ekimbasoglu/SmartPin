@@ -6,25 +6,6 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
-  ifDashboard = 'Dashboard';
+export class HeaderComponent {
   constructor(private router: Router) {}
-
-  goToDashboard() {
-    const authToken = localStorage.getItem('authToken');
-    // TODO Check authToken if it's validated
-
-    if (authToken) {
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-  ngOnInit(): void {
-    if (this.router.url === '/dashboard') {
-      this.ifDashboard = 'logout';
-    } else {
-      this.ifDashboard = 'Dashboard';
-    }
-  }
 }

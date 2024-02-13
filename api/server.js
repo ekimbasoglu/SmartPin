@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const redis = require('redis');
-const { createConnection } = require('typeorm');
 require('dotenv').config();
 
 
@@ -38,13 +37,11 @@ app.get('/', (req, res) => {
 
 // Imports 
 const users = require('./routes/User');
-// const products = require('./routes/Product');
+const maps = require('./routes/Map');
 
 //Routers
 app.use('/user', users);
-// app.use('/product', products);
-// app.use('/cart', cart);
-
+app.use('/map', maps);
 
 // Start the server
 app.listen(port, () => {
