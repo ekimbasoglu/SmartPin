@@ -17,6 +17,7 @@ import {
 } from 'maplibre-gl';
 import { MapService } from '../services/mapService';
 import * as mapboxgl from 'mapbox-gl';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -30,14 +31,24 @@ import * as mapboxgl from 'mapbox-gl';
           src="https://api.maptiler.com/resources/logo.svg"
           alt="MapTiler logo"
       /></a>
-      <div class="w-full h-full" #map></div>
+      <div class="w-full h-full" id="map" #map></div>
     </div>
   `,
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements AfterViewInit {
   constructor(private mapService: MapService, private el: ElementRef) {}
+  mapSubscription!: Subscription;
+
   ngAfterViewInit(): void {
-    this.mapService.initMap(this.el);
+    // this.mapService.initMap(this.el);
+    this.mapSubscription = this.mapService.map$.subscribe(() => {
+      this.mapService.initMap(this.el);
+    });
+  }
+  ngOnDestroy() {
+    if (this.mapSubscription) {
+      this.mapSubscription.unsubscribe();
+    }
   }
 }

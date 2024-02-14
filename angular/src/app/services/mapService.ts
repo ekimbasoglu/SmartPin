@@ -5,11 +5,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { mapMock } from 'src/mocks/map.mock';
 import { environment } from '../../../src/environments/environment';
 import { MapDataService } from './map-data.service';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
+
 @Injectable({
   providedIn: 'root',
 })
 export class MapService {
   private mapSubject = new BehaviorSubject<mapboxgl.Map | null>(null);
+  draw: any;
 
   initMap(el: any): void {
     const initialState = { lng: -97.393521, lat: 32.567122, zoom: 8.5 };
@@ -21,12 +24,35 @@ export class MapService {
     });
     this.initMapFeatures(map);
     this.mapSubject.next(map);
+
+    // Initialize Mapbox Draw
+    this.draw = new MapboxDraw({
+      displayControlsDefault: false,
+      controls: {
+        polygon: true,
+        trash: true,
+      },
+    });
   }
   // Navigation Control Initialization
   initMapFeatures(map: mapboxgl.Map) {
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    // map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    map.addControl(this.draw);
+    map.on('click', this.handleMapClick.bind(this));
+    map.on('draw.create', function (e: any) {
+      alert('create');
+      console.log(e);
+    });
   }
 
+  handleMapClick(event: any) {
+    // Handle right-click event
+    if (event.originalEvent.button === 2) {
+      // Do something when right-clicked
+      // Start drawing
+      this.draw.changeMode('draw_polygon');
+    }
+  }
   get map$(): Observable<mapboxgl.Map | null> {
     return this.mapSubject.asObservable();
   }
