@@ -40,8 +40,8 @@ const users = require('./routes/User');
 const maps = require('./routes/Map');
 
 //Routers
-app.use('/user', users);
-app.use('/map', maps);
+app.use('/legacy/user', users);
+app.use('/legacy/map', maps);
 
 // Start the server
 app.listen(port, () => {

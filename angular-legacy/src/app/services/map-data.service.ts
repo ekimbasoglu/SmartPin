@@ -17,7 +17,7 @@ export class MapDataService {
   }
 
   getMapData(): Observable<any> {
-    return this.http.get('http://localhost:3000/map/get').pipe(
+    return this.http.get('http://localhost:3000/legacy/map/get').pipe(
       map((data) => {
         return data;
       }),
@@ -28,7 +28,7 @@ export class MapDataService {
     );
   }
   addMapData(formObj: []): Observable<any> {
-    return this.http.post('http://localhost:3000/map/add', formObj).pipe(
+    return this.http.post('http://localhost:3000/legacy/map/add', formObj).pipe(
       map((data) => {
         return data;
       }),
@@ -41,7 +41,7 @@ export class MapDataService {
 
   deleteMapData(formObj: any): Observable<any> {
     return this.http
-      .delete(`http://localhost:3000/map/delete/${formObj.propertyId}`)
+      .delete(`http://localhost:3000/legacy/map/delete/${formObj.propertyId}`)
       .pipe(
         map((data) => {
           return data;
