@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MapService } from '../services/mapService';
-import { AddmarkerModalComponent } from '../addmarker-modal/addmarker-modal.component';
 import { MapDataService } from '../services/map-data.service';
 import { DialogService } from '../services/dialog.service';
 
